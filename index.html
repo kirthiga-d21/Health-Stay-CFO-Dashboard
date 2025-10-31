@@ -7,8 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
-        .chart-container { min-height: 300px; display: flex; align-items: center; justify-content: center; }
-        .bar { fill-opacity: 0.7; }
         svg { width: 100%; height: 100%; }
     </style>
 </head>
@@ -24,10 +22,10 @@
                 </div>
                 <div class="bg-white rounded-lg shadow-md p-4 border-t-4 border-blue-600">
                     <p class="text-gray-600 text-xs font-semibold uppercase">Selected Period</p>
-                    <select class="mt-2 px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg font-medium text-gray-900">
-                        <option>Jul-25</option>
-                        <option>Aug-25</option>
-                        <option selected>Sep-25</option>
+                    <select id="monthSelect" class="mt-2 px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg font-medium text-gray-900">
+                        <option value="JUL">Jul-25</option>
+                        <option value="AUG">Aug-25</option>
+                        <option value="SEP" selected>Sep-25</option>
                     </select>
                 </div>
             </div>
@@ -36,23 +34,23 @@
             <div class="grid grid-cols-4 gap-6">
                 <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
                     <p class="text-gray-600 text-xs font-semibold uppercase">Total Revenue</p>
-                    <p class="text-3xl font-bold mt-2 text-gray-900">Dhs 12.8k</p>
-                    <div class="flex items-center mt-4"><span class="text-green-600 text-sm">↑ 25.5%</span></div>
+                    <p id="revenue" class="text-3xl font-bold mt-2 text-gray-900">Dhs 12.8k</p>
+                    <div class="flex items-center mt-4"><span id="revenueTrend" class="text-green-600 text-sm">↑ 25.5%</span></div>
                 </div>
                 <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
                     <p class="text-gray-600 text-xs font-semibold uppercase">Operating Expenses</p>
-                    <p class="text-3xl font-bold mt-2 text-red-600">Dhs 248.9k</p>
-                    <div class="flex items-center mt-4"><span class="text-red-600 text-sm">↓ 3.8%</span></div>
+                    <p id="expenses" class="text-3xl font-bold mt-2 text-red-600">Dhs 248.9k</p>
+                    <div class="flex items-center mt-4"><span id="expensesTrend" class="text-red-600 text-sm">↓ 3.8%</span></div>
                 </div>
                 <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
                     <p class="text-gray-600 text-xs font-semibold uppercase">Net Loss</p>
-                    <p class="text-3xl font-bold mt-2 text-red-600">Dhs -236.1k</p>
-                    <div class="flex items-center mt-4"><span class="text-red-600 text-sm">↓ 4.2%</span></div>
+                    <p id="netLoss" class="text-3xl font-bold mt-2 text-red-600">Dhs -236.1k</p>
+                    <div class="flex items-center mt-4"><span id="netLossTrend" class="text-red-600 text-sm">↓ 4.2%</span></div>
                 </div>
                 <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
                     <p class="text-gray-600 text-xs font-semibold uppercase">Total Assets</p>
-                    <p class="text-3xl font-bold mt-2 text-gray-900">Dhs 920.2k</p>
-                    <div class="flex items-center mt-4"><span class="text-green-600 text-sm">↑ 10.4%</span></div>
+                    <p id="assets" class="text-3xl font-bold mt-2 text-gray-900">Dhs 920.2k</p>
+                    <div class="flex items-center mt-4"><span id="assetsTrend" class="text-green-600 text-sm">↑ 10.4%</span></div>
                 </div>
             </div>
         </div>
@@ -196,7 +194,7 @@
             <!-- Expense Distribution Pie Chart -->
             <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6">
                 <h2 class="text-lg font-bold text-gray-900 mb-2">Expense Distribution</h2>
-                <p class="text-xs text-gray-500 mb-4">September 2025</p>
+                <p class="text-xs text-gray-500 mb-4" id="expenseMonth">September 2025</p>
                 <svg viewBox="0 0 400 280" class="w-full">
                     <!-- Pie chart segments -->
                     <circle cx="130" cy="120" r="80" fill="#0ea5e9" opacity="0.7"/>
@@ -266,7 +264,7 @@
             <!-- Balance Sheet Details -->
             <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6">
                 <h2 class="text-lg font-bold text-gray-900 mb-2">Balance Sheet Details</h2>
-                <p class="text-xs text-gray-500 mb-4">September 2025</p>
+                <p id="balanceMonth" class="text-xs text-gray-500 mb-4">September 2025</p>
                 <div class="space-y-3">
                     <div class="flex justify-between p-3 bg-blue-50 rounded">
                         <span class="text-sm font-medium text-gray-700">Accounts Receivable</span>
@@ -278,7 +276,7 @@
                     </div>
                     <div class="flex justify-between p-3 bg-green-50 rounded">
                         <span class="text-sm font-medium text-gray-700">Cash on Hand</span>
-                        <span class="font-bold text-green-600">Dhs 485.2k</span>
+                        <span id="cashOnHand" class="font-bold text-green-600">Dhs 485.2k</span>
                     </div>
                     <div class="flex justify-between p-3 bg-orange-50 rounded">
                         <span class="text-sm font-medium text-gray-700">Prepayments</span>
@@ -317,5 +315,72 @@
             <p>Healthstay CFO Dashboard | Data Current as of October 27, 2025 | For Authorized Use Only</p>
         </div>
     </div>
+
+    <script>
+        // Financial data for each month
+        const monthlyData = {
+            'JUL': {
+                revenue: 8500,
+                expenses: 242156,
+                netLoss: -233656,
+                assets: 890000,
+                cashOnHand: 450000,
+                monthText: 'July 2025'
+            },
+            'AUG': {
+                revenue: 10200,
+                expenses: 235847,
+                netLoss: -225647,
+                assets: 905000,
+                cashOnHand: 467000,
+                monthText: 'August 2025'
+            },
+            'SEP': {
+                revenue: 12800,
+                expenses: 248923,
+                netLoss: -236123,
+                assets: 920157,
+                cashOnHand: 485200,
+                monthText: 'September 2025'
+            }
+        };
+
+        // Update dashboard when month changes
+        document.getElementById('monthSelect').addEventListener('change', function(e) {
+            const selectedMonth = e.target.value;
+            const data = monthlyData[selectedMonth];
+
+            // Update KPI cards
+            document.getElementById('revenue').textContent = `Dhs ${(data.revenue / 1000).toFixed(1)}k`;
+            document.getElementById('expenses').textContent = `Dhs ${(data.expenses / 1000).toFixed(1)}k`;
+            document.getElementById('netLoss').textContent = `Dhs ${(data.netLoss / 1000).toFixed(1)}k`;
+            document.getElementById('assets').textContent = `Dhs ${(data.assets / 1000).toFixed(1)}k`;
+
+            // Update month labels
+            document.getElementById('expenseMonth').textContent = data.monthText;
+            document.getElementById('balanceMonth').textContent = data.monthText;
+
+            // Update cash on hand
+            document.getElementById('cashOnHand').textContent = `Dhs ${(data.cashOnHand / 1000).toFixed(1)}k`;
+
+            // Calculate and update trends
+            if (selectedMonth === 'JUL') {
+                document.getElementById('revenueTrend').textContent = '↑ 0%';
+                document.getElementById('expensesTrend').textContent = '↓ 0%';
+                document.getElementById('netLossTrend').textContent = '↓ 0%';
+                document.getElementById('assetsTrend').textContent = '↑ 0%';
+            } else if (selectedMonth === 'AUG') {
+                document.getElementById('revenueTrend').textContent = '↑ 20%';
+                document.getElementById('expensesTrend').textContent = '↓ 2.6%';
+                document.getElementById('netLossTrend').textContent = '↑ 3.5%';
+                document.getElementById('assetsTrend').textContent = '↑ 1.7%';
+            } else if (selectedMonth === 'SEP') {
+                document.getElementById('revenueTrend').textContent = '↑ 25.5%';
+                document.getElementById('expensesTrend').textContent = '↓ 3.8%';
+                document.getElementById('netLossTrend').textContent = '↓ 4.2%';
+                document.getElementById('assetsTrend').textContent = '↑ 10.4%';
+            }
+        });
+    </script>
 </body>
 </html>
