@@ -318,33 +318,33 @@
 
     <script>
         // Financial data for each month
-        const monthlyData = {
-            'JUL': {
-                revenue: 8500,
-                expenses: 242156,
-                netLoss: -233656,
-                assets: 890000,
-                cashOnHand: 450000,
-                monthText: 'July 2025'
-            },
-            'AUG': {
-                revenue: 10200,
-                expenses: 235847,
-                netLoss: -225647,
-                assets: 905000,
-                cashOnHand: 467000,
-                monthText: 'August 2025'
-            },
-            'SEP': {
-                revenue: 12800,
-                expenses: 248923,
-                netLoss: -236123,
-                assets: 920157,
-                cashOnHand: 485200,
-                monthText: 'September 2025'
-            }
-        };
-
+        // Financial data for each month - CORRECTED FROM P&L STATEMENT
+const monthlyData = {
+    'JUL': {
+        revenue: 6000,
+        expenses: 257494.34,
+        netLoss: -251494.34,
+        assets: 920157,
+        cashOnHand: 485200,
+        monthText: 'July 2025'
+    },
+    'AUG': {
+        revenue: 6000,
+        expenses: 177318.01,
+        netLoss: -171318.01,
+        assets: 905000,
+        cashOnHand: 467000,
+        monthText: 'August 2025'
+    },
+    'SEP': {
+        revenue: 6000,
+        expenses: 190096.32,
+        netLoss: -184096.32,
+        assets: 920157,
+        cashOnHand: 485200,
+        monthText: 'September 2025'
+    }
+};
         // Update dashboard when month changes
         document.getElementById('monthSelect').addEventListener('change', function(e) {
             const selectedMonth = e.target.value;
