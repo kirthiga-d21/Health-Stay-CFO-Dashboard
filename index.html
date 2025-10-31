@@ -3,99 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Healthstay CFO Monthly Dashboard">
     <title>Healthstay CFO Dashboard</title>
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- React and ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Recharts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.10.3/recharts.min.js"></script>
-    
     <style>
         body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
     </style>
 </head>
 <body>
-    <div id="root"></div>
-
-    <script>
-        // Simple dashboard without external dependencies
-        const html = `
-        <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8">
-            <!-- Header -->
-            <div class="mb-10">
-                <div class="flex justify-between items-start mb-8">
-                    <div>
-                        <h1 class="text-5xl font-bold text-gray-900 mb-2">Healthstay</h1>
-                        <p class="text-gray-600 text-lg">CFO Monthly Dashboard</p>
-                        <p class="text-gray-500 text-sm mt-2">December 2024 - December 2025 | Last Updated: Oct 27, 2025</p>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-4 border-t-4 border-blue-600">
-                        <p class="text-gray-600 text-xs font-semibold uppercase">Selected Period</p>
-                        <select id="monthSelect" class="mt-2 px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="JUL">Jul-25</option>
-                            <option value="AUG">Aug-25</option>
-                            <option value="SEP" selected>Sep-25</option>
-                        </select>
-                    </div>
+    <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8">
+        <!-- Header -->
+        <div class="mb-10">
+            <div class="flex justify-between items-start mb-8">
+                <div>
+                    <h1 class="text-5xl font-bold text-gray-900 mb-2">Healthstay</h1>
+                    <p class="text-gray-600 text-lg">CFO Monthly Dashboard</p>
+                    <p class="text-gray-500 text-sm mt-2">December 2024 - December 2025 | Last Updated: Oct 27, 2025</p>
                 </div>
-
-                <!-- Key Metrics -->
-                <div class="grid grid-cols-4 gap-6">
-                    <!-- Revenue Card -->
-                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
-                        <p class="text-gray-600 text-xs font-semibold uppercase tracking-wide">Total Revenue</p>
-                        <p class="text-3xl font-bold mt-2 text-gray-900">Dhs 12.8k</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <span class="text-green-600 font-semibold text-sm">↑ 25.5%</span>
-                            <span class="text-gray-500 text-xs">vs Previous Period</span>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-3 border-t pt-2">Target: Dhs 110k</p>
-                    </div>
-
-                    <!-- Expenses Card -->
-                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
-                        <p class="text-gray-600 text-xs font-semibold uppercase tracking-wide">Operating Expenses</p>
-                        <p class="text-3xl font-bold mt-2 text-red-600">Dhs 248.9k</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <span class="text-red-600 font-semibold text-sm">↓ 3.8%</span>
-                            <span class="text-gray-500 text-xs">vs Previous Period</span>
-                        </div>
-                    </div>
-
-                    <!-- Net Loss Card -->
-                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
-                        <p class="text-gray-600 text-xs font-semibold uppercase tracking-wide">Net Loss</p>
-                        <p class="text-3xl font-bold mt-2 text-red-600">Dhs -236.1k</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <span class="text-red-600 font-semibold text-sm">↓ 4.2%</span>
-                            <span class="text-gray-500 text-xs">vs Previous Period</span>
-                        </div>
-                    </div>
-
-                    <!-- Assets Card -->
-                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
-                        <p class="text-gray-600 text-xs font-semibold uppercase tracking-wide">Total Assets</p>
-                        <p class="text-3xl font-bold mt-2 text-gray-900">Dhs 920.2k</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <span class="text-green-600 font-semibold text-sm">↑ 10.4%</span>
-                            <span class="text-gray-500 text-xs">vs Previous Period</span>
-                        </div>
-                    </div>
+                <div class="bg-white rounded-lg shadow-md p-4 border-t-4 border-blue-600">
+                    <p class="text-gray-600 text-xs font-semibold uppercase">Selected Period</p>
+                    <select class="mt-2 px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg font-medium text-gray-900">
+                        <option>Jul-25</option>
+                        <option>Aug-25</option>
+                        <option selected>Sep-25</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Charts Row 1 -->
-            <div class="grid grid-cols-2 gap-6 mb-6">
-                <!-- Revenue & Expenses Trend -->
-                <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
-                    <h2 class="text-lg font-bold text-gray-900 mb-2">Revenue & Expenses Trend</h2>
-                    <p class="text-xs text-gray-500 mb-4">12-month historical comparison</p>
-                    <div style="background: linear-gradient(135deg, #f0f4ff 0%, #e6f2ff 100%); padding: 40px; text-align: center; border-radius: 8px; min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div style="font-size: 48px; margin-bottom: 15px;">📊</div>
-                        <p style="color: #666; margin: 0; font-weight:
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
+                    <p class="text-gray-600 text-xs font-semibold uppercase">Total Revenue</p>
+                    <p class="text-3xl font-bold mt-2 text-gray-900">Dhs 12.8k</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-green-600 font-semibold text-sm">↑ 25.5%</span>
+                        <span class="text-gray-500 text-xs">vs Previous</span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
+                    <p class="text-gray-600 text-xs font-semibold uppercase">Operating Expenses</p>
+                    <p class="text-3xl font-bold mt-2 text-red-600">Dhs 248.9k</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-red-600 font-semibold text-sm">↓ 3.8%</span>
+                        <span class="text-gray-500 text-xs">vs Previous</span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
+                    <p class="text-gray-600 text-xs font-semibold uppercase">Net Loss</p>
+                    <p class="text-3xl font-bold mt-2 text-red-600">Dhs -236.1k</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-red-600 font-semibold text-sm">↓ 4.2%</span>
+                        <span class="text-gray-500 text-xs">vs Previous</span>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 border-l-4 border-blue-500 hover:shadow-xl transition-all">
+                    <p class="text-gray-600 text-xs font-semibold uppercase">Total Assets</p>
+                    <p class="text-3xl font-bold mt-2 text-gray-900">Dhs 920.2k</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-green-600 font-semibold text-sm">↑ 10.4%</span>
+                        <span class="text-gray-500 text-xs">vs Previous</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                <h2 class="text-lg font-bold text-gray-900 mb-2">Revenue & Expenses Trend</h2>
+                <p class="text-xs text-gray-500 mb-4">12-month historical comparison</p>
+                <div class="bg-blue-50 rounded p-8 text-center min-h-200">
+                    <p class="text-gray-600 text-2xl">📊</p>
+                    <p class="text-gray-600 font-bold mt-2">Revenue & Expenses Chart</p>
+                    <p class="text-sm text-gray-500 mt-2">Jul: 8.5k | Aug: 10.2k | Sep: 12.8k</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                <h2 class="text-lg font-bold text-gray-900 mb-2">Net Profit/Loss Trend</h2>
+                <p class="text-xs text-gray-500 mb-4">Monthly performance tracking</p>
+                <div class="bg-red-50 rounded p-8 text-center min-h-200">
+                    <p class="text-gray-600 text-2xl">📉</p>
+                    <p class="text-gray-600 font-bold mt-2">Profit & Loss Trend</p>
+                    <p class="text-sm text-gray-500 mt-2">Jul: -233.7k | Aug: -225.6k | Sep: -236.1k</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                <h2 class="text-lg font-bold text-gray-900 mb-2">Monthly Burn Rate</h2>
+                <p class="text-xs text-gray-500 mb-4">Cash consumption by month</p>
+                <div class="bg-orange-50 rounded p-8 text-center min-h-200">
+                    <p class="text-gray-600 text-2xl">📈</p>
+                    <p class="text-gray-600 font-bold mt-2">Monthly Cash Burn</p>
+                    <p class="text-sm text-gray-500 mt-2">Jul: 233.7k | Aug: 225.6k | Sep: 236.1k</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                <h2 class="text-lg font-bold text-gray-900 mb-2">Expense Distribution (September 2025)</h2>
+                <p class="text-xs text-gray-500 mb-4">Breakdown by major categories</p>
+                <div class="bg-yellow-50 rounded p-8 text-center min-h-200">
+                    <p class="text-gray-600 text-2xl">🥧</p>
+                    <p class="text-gray-600 font-bold mt-2">Expense Breakdown</p>
+                    <p class="text-sm text-gray-500 mt-2">Wages: 62.6% | Web/Ops: 27.5% | Others: 10%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 3 -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                <h2 class="text-lg font-bold text-gray-900 mb-2">Financial Ratios Trend</h2>
+                <p class="text-xs text-gray-500 mb-4">Liquidity and leverage analysis</p>
+                <div class="bg-green-50 rounded p-8 text-center min-h-200">
+                    <p class="text-gray-600 text-2xl">📊</p>
+                    <p class="text-gray-600 font-bold mt-2">Financial Ratios</p>
+                    <p class="text-sm text-gray-500 mt-2">Current: 3.8→4.1 | Quick: 1.4→1.45</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                <h2 class="text-lg font-bold text-gray-900 mb-2">Balance Sheet Details</h2>
+                <p class="text-xs text-gray-500 mb-4">September 2025</p>
+                <div class="space-y-3">
+                    <div class="flex justify-between p-2 bg-blue-50 rounded">
+                        <span class="text-sm text-gray-700">Accounts Receivable</span>
+                        <span class="font-bold text-blue-600">Dhs 28.5k</span>
+                    </div>
+                    <div class="flex justify-between p-2 bg-red-50 rounded">
+                        <span class="text-sm text-gray-700">Accounts Payable</span>
+                        <span class="font-bold text-red-600">Dhs 35.8k</span>
+                    </div>
+                    <div class="flex justify-between p-2 bg-green-50 rounded">
+                        <span class="text-sm text-gray-700">Cash on Hand</span>
+                        <span class="font-bold text-green-600">Dhs 485.2k</span>
+                    </div>
+                    <div class="flex justify-between p-2 bg-orange-50 rounded">
+                        <span class="text-sm text-gray-700">Prepayments</span>
+                        <span class="font-bold text-orange-600">Dhs 16.8k</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Metrics -->
+        <div class="grid grid-cols-4 gap-6 mb-6">
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-5 border-t-4 border-blue-500">
+                <p class="text-gray-600 text-xs font-semibold uppercase mb-3">Current Ratio</p>
+                <p class="text-3xl font-bold text-blue-600">4.10</p>
+                <p class="text-xs text-gray-500 mt-1">Liquidity Health</p>
+            </div>
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-5 border-t-4 border-blue-500">
+                <p class="text-gray-600 text-xs font-semibold uppercase mb-3">Quick Ratio</p>
+                <p class="text-3xl font-bold text-blue-600">1.45</p>
+                <p class="text-xs text-gray-500 mt-1">Immediate Solvency</p>
+            </div>
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-5 border-t-4 border-blue-500">
+                <p class="text-gray-600 text-xs font-semibold uppercase mb-3">Debt-to-Equity</p>
+                <p class="text-3xl font-bold text-blue-600">3.5%</p>
+                <p class="text-xs text-gray-500 mt-1">Conservative leverage</p>
+            </div>
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-md p-5 border-t-4 border-blue-500">
+                <p class="text-gray-600 text-xs font-semibold uppercase mb-3">Cash Runway</p>
+                <p class="text-3xl font-bold text-blue-600">5.2 Mo</p>
+                <p class="text-xs text-gray-500 mt-1">At current burn rate</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-gray-500 text-xs">
+            <p>Healthstay CFO Dashboard | Data Current as of October 27, 2025 | For Authorized Use Only</p>
+        </div>
+    </div>
+</body>
+</html>
